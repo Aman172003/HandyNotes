@@ -1,21 +1,20 @@
-//
-//  ContentView.swift
-//  HandyNotes
-//
-//  Created by Aman on 08/08/24.
-//
-
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
+    @State private var isLoggedIn = Auth.auth().currentUser != nil
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Group {
+            if isLoggedIn {
+                FileUploadView()
+            } else {
+                AuthView()
+            }
         }
-        .padding()
+        .onChange(of: Auth.auth().currentUser) { _ in
+            isLoggedIn = Auth.auth().currentUser != nil
+        }
     }
 }
 

@@ -1,14 +1,11 @@
-//
-//  HandyNotesApp.swift
-//  HandyNotes
-//
-//  Created by Aman on 08/08/24.
-//
-
 import SwiftUI
+import Firebase
 
 @main
 struct HandyNotesApp: App {
+    init() {
+            FirebaseApp.configure()
+        }
     var body: some Scene {
         WindowGroup {
             ContentView()
