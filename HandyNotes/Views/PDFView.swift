@@ -17,6 +17,8 @@ struct PDFView: View {
                 Button("Download PDF") {
                     showDocumentPicker = true
                 }
+                .foregroundColor(.white)
+                .font(.customfont(.medium, fontSize: 16))
                 .padding()
                 .sheet(isPresented: $showDocumentPicker) {
                     DocumentPicker { url in
@@ -31,6 +33,10 @@ struct PDFView: View {
                     .padding()
             }
         }
+        .navigationTitle("")
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+        .background(Color.grayC)
     }
 
     private func downloadPDF(from url: URL, to destinationURL: URL) {
