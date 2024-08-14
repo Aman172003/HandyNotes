@@ -19,6 +19,19 @@ struct FileUploadView: View {
                     .scaledToFill()
                     .ignoresSafeArea()
                 VStack {
+                    Group {
+                        if let selectedFile = selectedFile {
+                            Text("Selected File: \(selectedFile.lastPathComponent)")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        } else {
+                            Text("No file selected")
+                                .font(.headline)
+                                .foregroundColor(.clear) // Invisible but takes up space
+                        }
+                    }
+                    .padding(.bottom, 20)
+                    
                     if !isUploading {
                         SecondaryButton(title: "Select File") {
                             showingFilePicker = true

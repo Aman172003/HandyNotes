@@ -29,13 +29,28 @@ struct FileUploader {
         let pageHeight = 11.0 * 72.0
         let pageRect = CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight)
         let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: format)
-
-        let data = renderer.pdfData { (context) in
-            context.beginPage()
-            let textFont = UIFont.systemFont(ofSize: 12.0)
-            let textAttributes: [NSAttributedString.Key: Any] = [ .font: textFont ]
-            let attributedText = NSAttributedString(string: text, attributes: textAttributes)
-            attributedText.draw(in: CGRect(x: 20, y: 20, width: pageRect.width - 40, height: pageRect.height - 40))
+        
+        let textFont = UIFont.systemFont(ofSize: 12.0)
+        let textAttributes: [NSAttributedString.Key: Any] = [.font: textFont]
+        let attributedText = NSAttributedString(string: text, attributes: textAttributes)
+        
+        let textStorage = NSTextStorage(attributedString: attributedText)
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer(size: CGSize(width: pageRect.width - 40, height: pageRect.height - 40))
+        layoutManager.addTextContainer(textContainer)
+        textStorage.addLayoutManager(layoutManager)
+        
+        var currentRange = NSRange(location: 0, length: 0)
+        let data = renderer.pdfData { context in
+            while currentRange.location < layoutManager.numberOfGlyphs {
+                context.beginPage()
+                
+                let textRange = layoutManager.glyphRange(for: textContainer)
+                layoutManager.drawBackground(forGlyphRange: textRange, at: CGPoint(x: 20, y: 20))
+                layoutManager.drawGlyphs(forGlyphRange: textRange, at: CGPoint(x: 20, y: 20))
+                
+                currentRange.location += textRange.length
+            }
         }
 
         return data

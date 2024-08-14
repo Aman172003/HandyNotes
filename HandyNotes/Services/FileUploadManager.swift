@@ -8,8 +8,10 @@ struct FileUploadManager {
         let fileExtension = fileURL.pathExtension.lowercased()
 
         if fileExtension == "pdf" {
+            print("pdf hai")
             await PDFProcessor.processPDF(fileURL, uploadProgress: uploadProgress, uploadSuccessful: uploadSuccessful, uploadedFileURL: uploadedFileURL, errorMessage: errorMessage)
         } else if ["jpg", "jpeg", "png", "tiff", "gif", "bmp"].contains(fileExtension) {
+            print("Image hai")
             await PDFProcessor.processImage(fileURL, uploadProgress: uploadProgress, uploadSuccessful: uploadSuccessful, uploadedFileURL: uploadedFileURL, errorMessage: errorMessage)
         } else {
             errorMessage.wrappedValue = "Unsupported file type"
