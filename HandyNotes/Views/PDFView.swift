@@ -13,21 +13,6 @@ struct PDFView: View {
             if let url = url, let pdfURL = URL(string: url) {
                 PDFKitView(url: pdfURL)
                     .edgesIgnoringSafeArea(.all)
-
-                Button("Download PDF") {
-                    showDocumentPicker = true
-                }
-                .foregroundColor(.white)
-                .font(.customfont(.medium, fontSize: 16))
-                .padding()
-                .sheet(isPresented: $showDocumentPicker) {
-                    DocumentPicker { url in
-                        if let url = url {
-                            downloadedURL = url
-                            downloadPDF(from: pdfURL, to: url)
-                        }
-                    }
-                }
             } else {
                 Text("Failed to load PDF")
                     .padding()

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1406C0F62C70D093004CA7A0 /* IconItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406C0F52C70D093004CA7A0 /* IconItemRow.swift */; };
+		1406C0F82C70D0E6004CA7A0 /* IconItemSwitchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406C0F72C70D0E6004CA7A0 /* IconItemSwitchRow.swift */; };
 		144DFACC2C641C1C009D3522 /* HandyNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DFACB2C641C1C009D3522 /* HandyNotesApp.swift */; };
 		144DFACE2C641C1C009D3522 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DFACD2C641C1C009D3522 /* ContentView.swift */; };
 		144DFAD02C641C1D009D3522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 144DFACF2C641C1D009D3522 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		144DFB362C642800009D3522 /* GenAi-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 144DFB352C642800009D3522 /* GenAi-Info.plist */; };
 		144DFB382C64292E009D3522 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DFB372C64292E009D3522 /* APIKey.swift */; };
 		144DFB3B2C642A2E009D3522 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 144DFB3A2C642A2E009D3522 /* GoogleGenerativeAI */; };
+		145CD9292C7092DC00195C79 /* DocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CD9282C7092DC00195C79 /* DocView.swift */; };
+		145CD92B2C7092F500195C79 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CD92A2C7092F500195C79 /* ProfileView.swift */; };
 		14D6E4B12C66302A00885257 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D6E4B02C66302A00885257 /* AuthService.swift */; };
 		14D6E4B92C667F7A00885257 /* OCRProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D6E4B82C667F7A00885257 /* OCRProcessor.swift */; };
 		14D6E4BB2C66819900885257 /* QAGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D6E4BA2C66819900885257 /* QAGenerator.swift */; };
@@ -76,6 +80,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1406C0F52C70D093004CA7A0 /* IconItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconItemRow.swift; sourceTree = "<group>"; };
+		1406C0F72C70D0E6004CA7A0 /* IconItemSwitchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconItemSwitchRow.swift; sourceTree = "<group>"; };
 		144DFAC82C641C1C009D3522 /* HandyNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandyNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		144DFACB2C641C1C009D3522 /* HandyNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyNotesApp.swift; sourceTree = "<group>"; };
 		144DFACD2C641C1C009D3522 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +99,8 @@
 		144DFB332C6424C7009D3522 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		144DFB352C642800009D3522 /* GenAi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenAi-Info.plist"; sourceTree = "<group>"; };
 		144DFB372C64292E009D3522 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		145CD9282C7092DC00195C79 /* DocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocView.swift; sourceTree = "<group>"; };
+		145CD92A2C7092F500195C79 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		14D6E4B02C66302A00885257 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		14D6E4B82C667F7A00885257 /* OCRProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRProcessor.swift; sourceTree = "<group>"; };
 		14D6E4BA2C66819900885257 /* QAGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QAGenerator.swift; sourceTree = "<group>"; };
@@ -222,6 +230,8 @@
 				144DFB272C641DCE009D3522 /* AuthView.swift */,
 				144DFB2A2C641E01009D3522 /* FileUploadView.swift */,
 				144DFB2C2C641E1A009D3522 /* PDFView.swift */,
+				145CD9282C7092DC00195C79 /* DocView.swift */,
+				145CD92A2C7092F500195C79 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,6 +259,8 @@
 				14D6E4C72C6743A200885257 /* PrimaryButton.swift */,
 				14D6E4C92C6743C200885257 /* RoundedTextField.swift */,
 				14D6E4CB2C67669800885257 /* SecondaryButton.swift */,
+				1406C0F52C70D093004CA7A0 /* IconItemRow.swift */,
+				1406C0F72C70D0E6004CA7A0 /* IconItemSwitchRow.swift */,
 			);
 			path = UICommon;
 			sourceTree = "<group>";
@@ -419,19 +431,23 @@
 				144DFACE2C641C1C009D3522 /* ContentView.swift in Sources */,
 				14D6E4CA2C6743C200885257 /* RoundedTextField.swift in Sources */,
 				144DFB382C64292E009D3522 /* APIKey.swift in Sources */,
+				145CD9292C7092DC00195C79 /* DocView.swift in Sources */,
 				144DFACC2C641C1C009D3522 /* HandyNotesApp.swift in Sources */,
 				144DFB282C641DCE009D3522 /* AuthView.swift in Sources */,
 				14D6E4BB2C66819900885257 /* QAGenerator.swift in Sources */,
 				14D6E4C32C672D6400885257 /* CustomLoader.swift in Sources */,
 				14D6E4BF2C6729EB00885257 /* FileUploader.swift in Sources */,
 				14D6E4BD2C669A7300885257 /* PDFProcessor.swift in Sources */,
+				1406C0F62C70D093004CA7A0 /* IconItemRow.swift in Sources */,
 				144DFB302C642029009D3522 /* FilePicker.swift in Sources */,
+				145CD92B2C7092F500195C79 /* ProfileView.swift in Sources */,
 				144DFB2D2C641E1A009D3522 /* PDFView.swift in Sources */,
 				14D6E4B92C667F7A00885257 /* OCRProcessor.swift in Sources */,
 				144DFB2B2C641E01009D3522 /* FileUploadView.swift in Sources */,
 				14D6E4B12C66302A00885257 /* AuthService.swift in Sources */,
 				14D6E4C62C67436600885257 /* UIExtension.swift in Sources */,
 				14D6E4C82C6743A200885257 /* PrimaryButton.swift in Sources */,
+				1406C0F82C70D0E6004CA7A0 /* IconItemSwitchRow.swift in Sources */,
 				14D6E4C12C672BA200885257 /* FileUploadManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

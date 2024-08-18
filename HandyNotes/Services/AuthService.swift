@@ -8,9 +8,6 @@
 import SwiftUI
 import FirebaseAuth
 
-import SwiftUI
-import FirebaseAuth
-
 struct AuthService {
     func logIn(email: String, password: String, errorMessage: Binding<String>, isLoggedIn: Binding<Bool>) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in

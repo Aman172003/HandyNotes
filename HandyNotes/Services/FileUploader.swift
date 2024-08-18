@@ -1,6 +1,7 @@
 import FirebaseStorage
 import PDFKit
 import SwiftUI
+import FirebaseAuth
 
 struct FileUploader {
     
@@ -57,11 +58,21 @@ struct FileUploader {
     }
 
     private static func uploadFile(_ fileURL: URL, uploadProgress: Binding<Double>, uploadSuccessful: Binding<Bool>, uploadedFileURL: Binding<String?>, errorMessage: Binding<String?>) {
-        let storageRef = Storage.storage().reference().child("files/\(fileURL.lastPathComponent)")
+        // Ensure the user is authenticated and get the user UID
+        guard let userUID = Auth.auth().currentUser?.uid else {
+            errorMessage.wrappedValue = "User not authenticated."
+            return
+        }
+        
+        // Create a reference to the user's folder in Firebase Storage
+        let storageRef = Storage.storage().reference().child("users/\(userUID)/\(fileURL.lastPathComponent)")
+        
+        // Start the file upload
         let uploadTask = storageRef.putFile(from: fileURL, metadata: nil) { metadata, error in
             if let error = error {
                 errorMessage.wrappedValue = "Upload failed: \(error.localizedDescription)"
             } else {
+                // Retrieve the download URL once the upload is successful
                 storageRef.downloadURL { url, error in
                     if let error = error {
                         errorMessage.wrappedValue = "Failed to get download URL: \(error.localizedDescription)"
@@ -72,11 +83,14 @@ struct FileUploader {
                 }
             }
         }
-
+        
+        // Observe the progress of the upload
         uploadTask.observe(.progress) { snapshot in
             if let progress = snapshot.progress {
                 uploadProgress.wrappedValue = 100.0 * Double(progress.completedUnitCount) / Double(progress.totalUnitCount)
             }
         }
     }
+
+
 }
