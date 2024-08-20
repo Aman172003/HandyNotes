@@ -17,6 +17,8 @@ struct AuthView: View {
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
+                    .offset(x: -30)
+                
                 VStack {
                     Spacer()
                     if isSignUp {
