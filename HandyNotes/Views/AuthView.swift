@@ -6,6 +6,7 @@ struct AuthView: View {
     @State private var isSignUp = false
     @State private var errorMessage = ""
     @State private var isLoggedIn = false
+    @State private var userName = ""
     
     private let authService = AuthService()
     
@@ -18,6 +19,11 @@ struct AuthView: View {
                     .ignoresSafeArea()
                 VStack {
                     Spacer()
+                    if isSignUp {
+                        RoundTextField(title: "Username", text: $userName)
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 15)
+                        }
                     RoundTextField(title: "Email", text: $email, keyboardType: .emailAddress)
                     
                     .padding(.horizontal, 20)
@@ -29,18 +35,19 @@ struct AuthView: View {
                     .padding(.bottom, 20)
                     
                     PrimaryButton(title: isSignUp ? "Sign Up" : "Log In") {
-                                if isSignUp {
-                                    authService.signUp(email: email, password: password, errorMessage: $errorMessage, isLoggedIn: $isLoggedIn)
-                                } else {
-                                    authService.logIn(email: email, password: password, errorMessage: $errorMessage, isLoggedIn: $isLoggedIn)
-                                }
-                            }
+                        if isSignUp {
+                            authService.signUp(email: email, password: password, userName: userName, errorMessage: $errorMessage, isLoggedIn: $isLoggedIn)
+                        } else {
+                            authService.logIn(email: email, password: password, errorMessage: $errorMessage, isLoggedIn: $isLoggedIn)
+                        }
+                    }
                     .alert(isPresented: .constant(!errorMessage.isEmpty)) {
                         Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
                     }
                     Spacer()
                     Button(action: {
                         isSignUp.toggle()
+                        resetFields()
                     }) {
                         Text(isSignUp ? "Already have an account? Log In" : "Don't have an account? Sign Up")
                             .foregroundColor(.white)
@@ -56,8 +63,11 @@ struct AuthView: View {
             }
         }
     }
-
-    
+    private func resetFields() {
+            email = ""
+            password = ""
+            userName = ""
+        }
 }
 
 

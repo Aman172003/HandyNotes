@@ -6,7 +6,7 @@ struct CustomLoader: View {
     var body: some View {
         Circle()
             .trim(from: 0.0, to: 0.7)
-            .stroke(Color.blue, lineWidth: 5)
+            .stroke(Color(red: 0.933, green: 0.506, blue: 0.427), lineWidth: 5)
             .frame(width: 50, height: 50)
             .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
             .onAppear {

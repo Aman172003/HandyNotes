@@ -46,6 +46,7 @@ struct ContentView: View {
             isLoggedIn = Auth.auth().currentUser != nil
         }
     }
+        
 }
 
 #Preview {

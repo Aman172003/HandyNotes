@@ -12,6 +12,8 @@ import FirebaseAuth
 struct DocView: View {
     @State private var pdfURLs: [String] = []
     @State private var errorMessage: String?
+    @State private var selectedURL: String?
+    @State private var showPDFView: Bool = false
 
     var body: some View {
         NavigationView {
@@ -32,9 +34,23 @@ struct DocView: View {
                                     .lineLimit(3)
                                     .truncationMode(.middle)
                                 Spacer()
-                                NavigationLink(destination: PDFView(url: urlString)) {
-//                                    Text("View")
-//                                        .foregroundColor(.blue)
+                                Menu {
+                                    Button(action: {
+                                        // Handle view action
+                                        selectedURL = urlString
+                                        showPDFView = true
+                                    }) {
+                                        Label("View", systemImage: "eye")
+                                    }
+                                    Button(action: {
+                                        // Handle delete action
+                                        deletePDF(at: urlString)
+                                    }) {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                } label: {
+                                    Image(systemName: "ellipsis.circle")
+                                        .imageScale(.large)
                                 }
                             }
                         }
@@ -43,8 +59,16 @@ struct DocView: View {
             }
             .navigationBarTitle("Your PDFs", displayMode: .inline)
             .onAppear(perform: fetchPDFs)
+            .background(
+                NavigationLink(
+                    destination: PDFView(url: selectedURL ?? ""),
+                    isActive: $showPDFView
+                ) {
+                    EmptyView()
+                }
+            )
         }
-        .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+        .preferredColorScheme(.dark)
     }
 
     // Function to fetch PDF URLs from Firebase Storage
@@ -79,9 +103,28 @@ struct DocView: View {
         }
     }
 
+    // Function to delete a PDF
+    private func deletePDF(at urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        let storageRef = Storage.storage().reference(forURL: urlString)
+
+        storageRef.delete { error in
+            if let error = error {
+                errorMessage = "Failed to delete PDF: \(error.localizedDescription)"
+            } else {
+                // Remove the URL from the list
+                DispatchQueue.main.async {
+                    pdfURLs.removeAll { $0 == urlString }
+                }
+            }
+        }
+    }
 }
 
 #Preview {
     DocView()
 }
+
+
+
 

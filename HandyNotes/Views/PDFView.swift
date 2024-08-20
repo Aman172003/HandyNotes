@@ -9,19 +9,19 @@ struct PDFView: View {
     @State private var downloadedURL: URL?
 
     var body: some View {
-        VStack {
-            if let url = url, let pdfURL = URL(string: url) {
-                PDFKitView(url: pdfURL)
-                    .edgesIgnoringSafeArea(.all)
-            } else {
-                Text("Failed to load PDF")
-                    .padding()
+        ZStack{
+            VStack {
+                if let url = url, let pdfURL = URL(string: url) {
+                    PDFKitView(url: pdfURL)
+                        .edgesIgnoringSafeArea(.all)
+                } else {
+                    Text("Failed to load PDF")
+                        .padding()
+                }
             }
+            .navigationTitle("")
+            .ignoresSafeArea()
         }
-        .navigationTitle("")
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
-        .background(Color.grayC)
     }
 
     private func downloadPDF(from url: URL, to destinationURL: URL) {
